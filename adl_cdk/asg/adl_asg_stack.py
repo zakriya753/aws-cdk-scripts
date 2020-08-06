@@ -12,6 +12,9 @@ class Adl_Asg_Stack(core.Stack):
         asg_app= asg.AutoScalingGroup(self, "asg-app",
             vpc=vpc['vpc'],
             instance_type=ec2.InstanceType.of(ec2.InstanceClass.BURSTABLE2, ec2.InstanceSize.MICRO),
-            machine_image=ec2.AmazonLinuxImage()
+            machine_image=ec2.AmazonLinuxImage(),
+            key_name="adl-keypair-dev-us-east-1",
+            max_capacity=2
+            update_type=asg.UpdateType.ROLLING_UPDATE
         )
         return asg_app
