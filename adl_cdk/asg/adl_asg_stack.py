@@ -2,6 +2,7 @@ from aws_cdk import (
     core,
     aws_ec2 as ec2,
     aws_autoscaling as asg,
+    aws_iam as iam, 
 )
 
 class Adl_Asg_Stack(core.Stack):
@@ -17,4 +18,7 @@ class Adl_Asg_Stack(core.Stack):
             max_capacity=2
             update_type=asg.UpdateType.ROLLING_UPDATE
         )
+        asg_app.add_to_role_policy(statement=iam.PolicyStatement(
+          resources=["*"]
+          actions=[s3:*]))
         return asg_app
