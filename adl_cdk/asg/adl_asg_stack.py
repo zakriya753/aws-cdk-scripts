@@ -13,4 +13,5 @@ class Adl_Asg_Stack(core.Stack):
             vpc=vpc['vpc'],
             instance_type=ec2.InstanceType.of(ec2.InstanceClass.BURSTABLE2, ec2.InstanceSize.MICRO),
             machine_image=ec2.AmazonLinuxImage()
-        ) 
+        )
+        return asg_app
